@@ -1,114 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SIM-Kampus</title>
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+<x-landingpage.layout>
+@push('bodylandingpage')
 <body class="bg-[#FDFDFC] text-[#1b1b18] antialiased">
-{{-- NAVBAR --}}
-<header id="site-header" class="bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300 ease-in-out">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-16 items-center justify-between">
-            
-            <div class="md:flex md:items-center md:gap-12">
-                <a class="block text-indigo-600" href="/">
-                    <span class="sr-only">Home</span>
-                    <h2 class="text-2xl font-bold tracking-tight">🎓 SIM-Kampus</h2>
-                </a>
-            </div>
-
-            <div class="hidden md:block">
-                <nav aria-label="Global">
-                    <ul class="flex items-center gap-8 text-sm font-medium">
-                        <li><a class="text-gray-600 transition hover:text-indigo-600" href="/"> Beranda </a></li>
-                        <li><a class="text-gray-600 transition hover:text-indigo-600" href="#prodi"> Program Studi </a></li>
-                        <li><a class="text-gray-600 transition hover:text-indigo-600" href="#kegiatan"> Kegiatan </a></li>
-                        <li><a class="text-gray-600 transition hover:text-indigo-600" href="#tentang"> Tentang </a></li>
-                        <li><a class="text-gray-600 transition hover:text-indigo-600" href="#kontak"> Kontak </a></li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="flex items-center gap-4">
-                @if (Route::has('login'))
-                    <div class="sm:flex sm:gap-4">
-                        @auth
-                            <a class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-indigo-700" href="{{ url('/dashboard') }}">
-                                Dashboard
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}" class="hidden sm:block">
-                                @csrf
-                                <button type="submit" class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600 transition hover:bg-gray-200">
-                                    Keluar
-                                </button>
-                            </form>
-                        @else
-                            <a class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-indigo-700" href="{{ route('login') }}">
-                                Login
-                            </a>
-
-                            @if (Route::has('register'))
-                                <div class="hidden sm:flex">
-                                    <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600 transition hover:text-indigo-700" href="{{ route('register') }}">
-                                        Register
-                                    </a>
-                                </div>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-
-                <div class="block md:hidden">
-                    <button id="hamburger-button" class="rounded bg-gray-100 p-2 text-gray-600 transition hover:bg-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white shadow-lg">
-        <nav class="flex flex-col gap-4 p-4 text-sm font-medium">
-            <a class="text-gray-600 hover:text-indigo-600" href="/">Beranda</a>
-            <a class="text-gray-600 hover:text-indigo-600" href="#prodi">Program Studi</a>
-            <a class="text-gray-600 hover:text-indigo-600" href="#kegiatan">Kegiatan</a>
-            <a class="text-gray-600 hover:text-indigo-600" href="#tentang">Tentang</a>
-            <a class="text-gray-600 hover:text-indigo-600" href="#kontak">Kontak</a>
-            <hr class="my-2 border-gray-100">
-            
-            @auth
-                <a class="text-indigo-600 font-bold" href="{{ url('/dashboard') }}">Dashboard</a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-red-600 font-bold text-left w-full">Keluar</button>
-                </form>
-            @else
-                <a class="text-indigo-600 font-bold" href="{{ route('login') }}">Login</a>
-                @if (Route::has('register'))
-                    <a class="text-gray-600 font-bold" href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </nav>
-    </div>
-</header>
-
+@endpush
 {{-- <script>
     document.getElementById('hamburger-button').addEventListener('click', function() {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     });
 </script> --}}
-{{-- END-NAVBAR --}}
     <main>
         {{-- HERO --}}
         <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center">
@@ -355,9 +256,116 @@
         </div>
     </div>
 </section>
-{{-- END-KEGIATAN --}}
 
-{{-- Tentang --}}
+<section id="berita" class="py-20 bg-white scroll-mt-24" data-aos="fade-up">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <!-- Heading -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div class="max-w-2xl">
+                <h2 
+                    class="text-3xl font-bold text-gray-900 sm:text-4xl tracking-tight"
+                    data-aos="fade-right"
+                    data-aos-delay="100"
+                >
+                    News Terbaru
+                </h2>
+
+                <p 
+                    class="mt-4 text-gray-600"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                >
+                    Ikuti perkembangan terkini seputar kampus, prestasi mahasiswa, dan pengumuman penting lainnya.
+                </p>
+            </div>
+
+            <div data-aos="fade-left" data-aos-delay="300">
+                <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-white font-semibold hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+                    Lihat Semua News
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- News Grid -->
+        @if($latestNews && $latestNews->count() > 0)
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                
+                @foreach($latestNews as $news)
+                <article 
+                    class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition hover:shadow-xl border border-gray-100"
+                    data-aos="fade-up"
+                    data-aos-delay="{{ $loop->index * 100 + 100 }}"
+                >
+                    <div class="flex flex-col h-full">
+                        <!-- Image -->
+                        <div class="relative h-64 overflow-hidden">
+                            @if($news->image)
+                                <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            @else
+                                <div class="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-20 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                    </svg>
+                                </div>
+                            @endif
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            
+                            <!-- Date Badge -->
+                            <div class="absolute top-4 left-4">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-gray-900">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    {{ $news->created_at->format('d M Y') }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col flex-1 p-6">
+                            <!-- Title -->
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition line-clamp-2">
+                                {{ $news->title }}
+                            </h3>
+
+                            <!-- Excerpt -->
+                            <p class="mt-3 text-sm text-gray-600 line-clamp-3 flex-1">
+                                {{ Str::limit(strip_tags($news->body), 150) }}
+                            </p>
+
+                            <!-- Read More -->
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <a href="{{ route('news.show', $news->id) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700 group-hover:gap-3 transition-all">
+                                    Baca Selengkapnya
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                @endforeach
+
+            </div>
+        @else
+            <!-- Empty State -->
+            <div class="text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto size-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+                <h3 class="mt-4 text-lg font-semibold text-gray-900">Belum Ada News</h3>
+                <p class="mt-2 text-sm text-gray-500">News akan ditampilkan di sini setelah dipublikasikan.</p>
+            </div>
+        @endif
+    </div>
+</section>
+
 <section id="tentang" class="py-20 bg-white scroll-mt-24" data-aos="fade-up">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
@@ -649,79 +657,4 @@
         </div>
     </div>
 </footer>
-
-
-    <script>
-        const btn = document.getElementById('hamburger-button');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Menutup menu mobile saat link diklik
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-    </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-    // Inisialisasi AOS
-    AOS.init({
-        // Pengaturan Global:
-        duration: 900,     // Durasi animasi (ms), 800ms adalah standar yang nyaman
-        once: false,         // Animasi hanya jalan sekali (mencegah kedap-kedip saat scroll balik)
-        offset: 50,         // Jarak (px) elemen dari bawah layar sebelum animasi dimulai
-        // easing: 'ease-in-out', // Jenis gerakan
-        anchorPlacement: 'top-bottom', // Memicu animasi segera setelah bagian atas elemen menyentuh bawah layar
-    });
-
-    // PENTING: Refresh AOS setelah semua gambar dan aset selesai dimuat
-    // Ini solusi agar elemen Hero & Header yang macet bisa berjalan
-    window.addEventListener('load', function() {
-        AOS.refresh();
-    });
-</script>
-
-<script>
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('site-header');
-    if (window.scrollY > 10) {
-      header.classList.add('shadow-md');
-    } else {
-      header.classList.remove('shadow-md');
-    }
-  });
-</script>
-
-<script>
-  const header = document.getElementById('site-header');
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-
-    // Shadow saat scroll
-    if (currentScrollY > 10) {
-      header.classList.add('shadow-md');
-    } else {
-      header.classList.remove('shadow-md');
-    }
-
-    // Auto hide / show
-    if (currentScrollY > lastScrollY && currentScrollY > 80) {
-      // scroll ke bawah → sembunyikan
-      header.classList.add('-translate-y-full');
-    } else {
-      // scroll ke atas → tampilkan
-      header.classList.remove('-translate-y-full');
-    }
-
-    lastScrollY = currentScrollY;
-  });
-</script>
-
-</body>
-</html>
+</x-landingpage.layout>

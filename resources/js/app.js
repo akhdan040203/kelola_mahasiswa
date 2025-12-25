@@ -8,3 +8,4 @@ Alpine.start();
 
 import './bootstrap';
 
+import 'flowbite'
