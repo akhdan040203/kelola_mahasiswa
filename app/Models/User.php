@@ -20,7 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password', 
+        'role_id',
     ];
 
     /**
@@ -44,5 +45,28 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+   public function role()
+    {
+        return $this->belongsTo(Roles::class, 'role_id');
+    }
+
+    public function hasRole(string $roleName): bool{
+        return $this->role?->name === $roleName;
+    }
+
+    public function hasPermission(string $permissionName): bool
+    {
+
+    if(!$this->role) return false;
+
+    return $this->role->permissions()
+    ->where('name', $permissionName)
+    ->exists();
+    }
+
+    public function news (){
+        return $this->hasMany(News::class, 'author_id');
     }
 }
