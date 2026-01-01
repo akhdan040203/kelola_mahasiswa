@@ -74,41 +74,73 @@
     </div>
 
     <!-- Recent News -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Berita Terbaru</h2>
+<div class="bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl rounded-[2rem] border border-gray-200/50 dark:border-white/5 shadow-sm transition-all duration-300">
+    <div class="px-8 pt-8 pb-6 flex items-center justify-between">
+        <div class="space-y-1">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Berita Terbaru</h2>
+            <div class="h-1 w-6 bg-indigo-500 rounded-full"></div>
         </div>
-        <div class="p-6">
-            @if($stats['recent_news']->count() > 0)
-                <div class="space-y-4">
-                    @foreach($stats['recent_news'] as $news)
-                    <div class="flex items-start space-x-4 pb-4 border-b border-gray-200 dark:border-gray-700 last:border-0">
+        <a href="{{ route('admin.news.index') }}" class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-indigo-500 transition-all">
+            Semua
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="px-3 pb-6">
+        @if($stats['recent_news']->count() > 0)
+            <div class="space-y-1">
+                @foreach($stats['recent_news'] as $news)
+                <div class="group relative flex items-center gap-4 p-4 rounded-[1.5rem] hover:bg-white dark:hover:bg-gray-900/50 hover:shadow-md hover:shadow-gray-200/50 dark:hover:shadow-none transition-all duration-400">
+                    
+                    <div class="relative flex-shrink-0">
                         @if($news->image)
-                            <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" class="w-16 h-16 rounded-lg object-cover">
+                            <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" 
+                                 class="w-14 h-14 rounded-2xl object-cover filter saturate-[0.8] group-hover:saturate-100 transition-all duration-500">
                         @else
-                            <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            <div class="w-14 h-14 bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center border border-gray-200/50 dark:border-white/5">
+                                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
                             </div>
                         @endif
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-900 dark:text-white">{{ $news->title }}</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ $news->created_at->diffForHumans() }}</p>
-                        </div>
-                        <a href="{{ route('admin.news.edit', $news->id) }}" class="text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                        </a>
                     </div>
-                    @endforeach
+
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-[14px] font-semibold text-gray-700 dark:text-gray-300 leading-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                            {{ $news->title }}
+                        </h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                                {{ $news->created_at->translatedFormat('d M Y') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('admin.news.edit', $news->id) }}" 
+                       class="opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out">
+                        <div class="p-3 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl hover:bg-indigo-600 hover:text-white transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2.5 2.5 0 113.536 3.536L12 18.232H8.5V14.732L17.586 4.586z"/>
+                            </svg>
+                        </div>
+                    </a>
                 </div>
-            @else
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Belum ada berita</p>
-            @endif
-        </div>
+                @endforeach
+            </div>
+        @else
+            <div class="py-16 flex flex-col items-center justify-center text-center">
+                <div class="w-12 h-12 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <p class="text-xs font-medium text-gray-400">Belum ada konten untuk ditampilkan.</p>
+            </div>
+        @endif
     </div>
+</div>
 
     <!-- Quick Actions -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
