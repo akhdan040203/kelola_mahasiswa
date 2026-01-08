@@ -12,10 +12,16 @@
 
     <!-- Info Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Kelas yang Diampu</h2>
-            <p class="text-gray-500 dark:text-gray-400 text-center py-8">Fitur ini akan segera hadir</p>
-        </div>
+        <a href="{{ route('dosen.mata-kuliah.index') }}" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-md transition group">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 transition">Mata Kuliah Diampu</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Lihat dan kelola mata kuliah yang Anda ajar semester ini.</p>
+            <div class="flex items-center text-indigo-600 font-bold text-sm">
+                Kelola Sekarang
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </div>
+        </a>
 
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Jadwal Mengajar</h2>
@@ -26,7 +32,18 @@
     <!-- Quick Actions -->
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Aksi Cepat</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+             <a href="{{ route('dosen.mata-kuliah.index') }}" class="flex items-center p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-indigo-500 dark:hover:border-indigo-500 transition">
+                <div class="p-3 bg-green-100 dark:bg-green-900 rounded-full mr-4">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Kelola Kelas</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Absensi & Tugas</p>
+                </div>
+            </a>
             <a href="{{ route('admin.nilai.index') }}" class="flex items-center p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-indigo-500 dark:hover:border-indigo-500 transition">
                 <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
                     <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

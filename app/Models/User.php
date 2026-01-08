@@ -69,4 +69,15 @@ class User extends Authenticatable
     public function news (){
         return $this->hasMany(News::class, 'author_id');
     }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'user_id');
+    }
+
+    // Relationship: User (with role dosen) has many Mata Kuliah
+    public function mataKuliah()
+    {
+        return $this->hasMany(MataKuliah::class, 'dosen_id');
+    }
 }

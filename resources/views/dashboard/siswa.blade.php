@@ -30,7 +30,10 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600 dark:text-gray-400">SKS Diambil</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">-</p>
+                    @php
+                        $activeKrs = Auth::user()->mahasiswa->krs()->where('status', 'approved')->latest()->first();
+                    @endphp
+                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ $activeKrs ? $activeKrs->total_sks : '-' }}</p>
                 </div>
                 <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
                     <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,8 +46,8 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Semester</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">-</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Semester Aktif</p>
+                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ Auth::user()->mahasiswa->semester_aktif ?? '-' }}</p>
                 </div>
                 <div class="p-3 bg-green-100 dark:bg-green-900 rounded-full">
                     <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,17 +89,17 @@
                 </div>
             </a>
 
-            <div class="flex items-center p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg opacity-50 cursor-not-allowed">
-                <div class="p-3 bg-gray-100 dark:bg-gray-700 rounded-full mr-4">
-                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('student.krs.index') }}" class="flex items-center p-4 border-2 border-indigo-200 dark:border-indigo-900/30 rounded-lg hover:border-indigo-500 dark:hover:border-indigo-500 transition bg-indigo-50/50 dark:bg-indigo-900/10">
+                <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
+                    <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-gray-500 dark:text-gray-400">Mata Kuliah</h3>
-                    <p class="text-sm text-gray-400">Segera hadir</p>
+                    <h3 class="font-bold text-gray-900 dark:text-white">Isi KRS</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Pilih mata kuliah semester ini</p>
                 </div>
-            </div>
+            </a>
 
             <div class="flex items-center p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg opacity-50 cursor-not-allowed">
                 <div class="p-3 bg-gray-100 dark:bg-gray-700 rounded-full mr-4">

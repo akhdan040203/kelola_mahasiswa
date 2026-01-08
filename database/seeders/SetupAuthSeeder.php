@@ -23,6 +23,7 @@ class SetupAuthSeeder extends Seeder
         $kelolaMataKuliah = Permission::firstOrCreate(['name' => 'kelola_mata_kuliah']);
         $kelolaNilai = Permission::firstOrCreate(['name' => 'kelola_nilai']);
         $kelolaUsers = Permission::firstOrCreate(['name' => 'kelola_users']);
+        $kelolaKrs = Permission::firstOrCreate(['name' => 'kelola_krs']);
 
         // Assign Permissions to Admin (semua akses)
         $adminRole->permissions()->syncWithoutDetaching([
@@ -31,6 +32,7 @@ class SetupAuthSeeder extends Seeder
             $kelolaMataKuliah->id,
             $kelolaNilai->id,
             $kelolaUsers->id,
+            $kelolaKrs->id,
         ]);
 
         // Assign Permissions to Dosen (hanya kelola nilai)
