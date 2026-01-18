@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,7 @@ class DashboardController extends Controller
             $stats = [
                 'total_news' => News::count(),
                 'total_users' => User::count(),
+                'total_mahasiswa' => Mahasiswa::count(),
                 'recent_news' => News::latest()->take(5)->get(),
             ];
             

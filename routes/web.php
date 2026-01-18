@@ -44,8 +44,24 @@ Route::middleware(['auth', 'permission:kelola_news'])->group(function () {
 });
 
 // Kelola Mahasiswa (Admin only)
+// Route::middleware(['auth', 'permission:kelola_mahasiswa'])->group(function () {
+//     Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
+// });
+
+// Kelola Mahasiswa (Admin only)
 Route::middleware(['auth', 'permission:kelola_mahasiswa'])->group(function () {
-    Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
+    Route::get('admin/mahasiswa/download-template', [MahasiswaController::class, 'downloadTemplate'])->name('admin.mahasiswa.downloadTemplate');
+    Route::get('admin/mahasiswa/export', [MahasiswaController::class, 'export'])->name('admin.mahasiswa.export');
+    Route::post('admin/mahasiswa/import', [MahasiswaController::class, 'import'])->name('admin.mahasiswa.import');
+    Route::resource('admin/mahasiswa', MahasiswaController::class)->names([
+        'index'   => 'admin.mahasiswa.index',
+        'create'  => 'admin.mahasiswa.create',
+        'store'   => 'admin.mahasiswa.store',
+        'show'    => 'admin.mahasiswa.show',
+        'edit'    => 'admin.mahasiswa.edit',
+        'update'  => 'admin.mahasiswa.update',
+        'destroy' => 'admin.mahasiswa.destroy',
+    ]);
 });
 
 // Kelola Mata Kuliah (Admin only)

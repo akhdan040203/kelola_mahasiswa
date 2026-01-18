@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,12 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        // Mengambil data mahasiswa dengan pagination (misal: 10 data per halaman)
+        // 'user' dan 'prodi' adalah relasi jika Anda menggunakannya
+        $mahasiswa = Mahasiswa::with(['user', 'prodi'])->paginate(10);
+
+        // Mengirimkan variabel $mahasiswa ke view
+        return view('admin.mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -20,7 +26,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

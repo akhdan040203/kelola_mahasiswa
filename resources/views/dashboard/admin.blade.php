@@ -42,12 +42,12 @@
             </div>
         </div>
 
-        <!-- Mahasiswa (Placeholder) -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <!-- Mahasiswa -->
+        <a href="{{ route('admin.mahasiswa.index') }}" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-md transition">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600 dark:text-gray-400">Total Mahasiswa</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">-</p>
+                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ $stats['total_mahasiswa'] }}</p>
                 </div>
                 <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
                     <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@
                     </svg>
                 </div>
             </div>
-        </div>
+        </a>
 
         <!-- Mata Kuliah -->
         <a href="{{ route('admin.mata-kuliah.index') }}" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-md transition">

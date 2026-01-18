@@ -18,12 +18,20 @@ class Mahasiswa extends Model
         'semester_aktif',
         'prodi',
         'angkatan',
+        'status',
+        'dosen_pembimbing_id',
     ];
 
     // Relationship: Mahasiswa belongs to User
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // Relationship: Mahasiswa belongs to Dosen Pembimbing
+    public function dosenPembimbing()
+    {
+        return $this->belongsTo(User::class, 'dosen_pembimbing_id');
     }
 
     // Relationship: Mahasiswa has many KRS
